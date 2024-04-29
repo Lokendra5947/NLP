@@ -27,6 +27,10 @@ manager.addAnswer ('en', "greeting" , "hey how are you!" )
 // train model 
 manager.train().then(()=>{
     manager.save()
+
+    app.get("/",  (req,res) =>{
+        res.send("Server is Running")
+    })
     app.get("/bot", async (req,res)=>{
         let response = await manager.process("en", req.query.message)
         res.send(response.answer)
